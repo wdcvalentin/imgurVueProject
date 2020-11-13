@@ -17,6 +17,7 @@
             style="max-width: 20rem;"
             class="mb-2"
           >
+          <span v-on:click="addFavoritesPosts(item.images.id)">❤️</span>
           </b-card>
         </b-col>
       </b-row>
@@ -27,7 +28,7 @@
 <script>
 export default {
   name: "Card",
-  props: ["posts"],
+  props: ["posts", "addFavoritesPosts"],
   methods: {},
   data: function() {
     return {
@@ -38,4 +39,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+span {
+  cursor: pointer;
+}
+</style>

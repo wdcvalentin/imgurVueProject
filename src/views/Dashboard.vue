@@ -2,7 +2,7 @@
   <div id="app">
     <Navbar />
     <div>
-      <Card v-bind:posts="topPosts" />
+      <Card v-bind:posts="topPosts" :addFavoritesPosts="addFavoritesPosts"/>
 
       <!-- <Card v-bind:data="favorites" /> -->
     </div>
