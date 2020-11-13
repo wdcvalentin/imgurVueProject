@@ -4,16 +4,14 @@
       <b-row>
         <b-col>
           <b-card
-            v-if="item.images[0].type !== 'video/mp4'"
-            :title="item.title"
-            :img-src="item.images[0].link"
+            :img-src="item.link"
             img-alt="Image"
             img-top
             tag="article"
             style="max-width: 20rem;"
             class="mb-2"
           >
-            <b-badge v-on:click="addFavoritesPosts(item.images[0].id), getFavPosts()" variant="danger">❤FAV</b-badge>
+          <b-badge v-on:click="addFavoritesPosts(item.id), getFavPosts()" variant="danger">UNFAV</b-badge>
           </b-card>
         </b-col>
       </b-row>
@@ -30,6 +28,9 @@ export default {
     return {
       hover: false
     };
+  },
+  created() {
+    console.log("dog", this.posts);
   }
 };
 </script>
@@ -38,7 +39,6 @@ export default {
 span {
   cursor: pointer;
 }
-
 .bv-example-row {
   padding: 15px;
   margin-left: auto;
