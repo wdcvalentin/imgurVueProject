@@ -5,9 +5,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
-    <a
-      href="https://api.imgur.com/oauth2/authorize?client_id=6110129ef3e5f00&response_type=token"
-    >
+    <a href="https://api.imgur.com/oauth2/authorize?client_id=6110129ef3e5f00&response_type=token">
       <b-button variant="outline-primary">Connexion</b-button>
     </a>
   </div>
@@ -37,6 +35,7 @@ if (fragment.has("access_token")) {
   //   .catch(err => console.log(err));
 }
 export default {
+  name: 'Home',
   methods: {
   }
 };

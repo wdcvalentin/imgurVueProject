@@ -1,33 +1,36 @@
 <template>
   <div id="app">
-    <div v-for="(item, i) in data" :key="i">
-      <h4>{{item.title}}</h4>
-      <img :src="item.link" alt="fav">
-    </div>
+    <Card v-bind:data="data" />
   </div>
 </template>
 
 <script>
+import Card from "../components/Card";
 import axios from "axios";
 export default {
+  name: "Dashboard",
+  components: {
+    Card
+  },
   methods: {
     getData(tokenType, accessToken) {
       axios
-        .get("https://api.imgur.com/3/account/me/gallery_favorites", {
+        .get("https://api.imgur.com/3/gallery/top/top/1?showViral=true", {
           headers: { authorization: `${tokenType} ${accessToken}` }
         })
         .then(res => {
-          console.log('res', res);
-          this.data = res.data.data;
+            let items = [];
+            const mapping = res.data.data.map(res => res)
+            items = mapping.filter(item => item.images !== undefined && item.type !== "video/mp4")
+            console.log('items:', items)
+            this.data = items
         })
         .catch(err => console.log(err));
     }
   },
   data: function() {
     return {
-      fav: {
-        data: [],
-      }
+      data: []
     };
   },
   mounted: function() {
@@ -36,7 +39,7 @@ export default {
     if (accessToken) {
       this.getData(tokenType, accessToken);
     } else {
-      window.location = '/'
+      window.location = "/";
     }
   }
 };
