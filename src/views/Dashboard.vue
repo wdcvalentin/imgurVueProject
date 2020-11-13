@@ -41,17 +41,21 @@ export default {
     },
     addFavoritesPosts(id) {
       const tokenType = localStorage.getItem("tokenType");
-      console.log('tokenType:', tokenType)
       const accessToken = localStorage.getItem("token");
-      console.log(id);
-      axios
-        .post(`https://api.imgur.com/3/image/${id}/favorite`, {
-          headers: { authorization: `${tokenType} ${accessToken}` }
+      var config = {
+        method: "post",
+        url: `https://api.imgur.com/3/image/${id}/favorite`,
+        headers: {
+          Authorization: `${tokenType} ${accessToken}`,
+        }
+      };
+      axios(config)
+        .then(function(response) {
+          console.log(response);
         })
-        .then(res => {
-          console.log("res", res);
-        })
-        .catch(err => console.log(err));
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   },
   data: function() {
