@@ -12,3 +12,15 @@
     </b-navbar>
   </div>
 </template>
+
+<script>
+export default {
+  name: "Navbar",
+  props: ["data"],
+  methods: {},
+  data: function() {
+    return {};
+  },
+  mounted: function() {}
+};
+</script>
