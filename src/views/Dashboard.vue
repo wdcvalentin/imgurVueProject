@@ -2,7 +2,7 @@
   <div id="app">
     <Navbar />
     <div>
-      <Card v-bind:posts="topPosts" :addFavoritesPosts="addFavoritesPosts"/>
+      <Card v-bind:posts="topPosts" :addFavoritesPosts="addFavoritesPosts" />
 
       <!-- <Card v-bind:data="favorites" /> -->
     </div>
@@ -36,14 +36,20 @@ export default {
         })
         .catch(err => console.log(err));
     },
-    addFavoritesPosts(tokenType, accessToken, id) {
+    dog() {
+      return console.log("dog");
+    },
+    addFavoritesPosts(id) {
+      const tokenType = localStorage.getItem("tokenType");
+      console.log('tokenType:', tokenType)
+      const accessToken = localStorage.getItem("token");
+      console.log(id);
       axios
         .post(`https://api.imgur.com/3/image/${id}/favorite`, {
           headers: { authorization: `${tokenType} ${accessToken}` }
         })
         .then(res => {
           console.log("res", res);
-          this.favorites = res.data.data;
         })
         .catch(err => console.log(err));
     }

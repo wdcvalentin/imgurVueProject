@@ -17,7 +17,7 @@
             style="max-width: 20rem;"
             class="mb-2"
           >
-          <span v-on:click="addFavoritesPosts(item.images.id)">❤️</span>
+          <button v-on:click="addFavoritesPosts(item.images[0].id)">❤️</button>
           </b-card>
         </b-col>
       </b-row>
@@ -35,7 +35,6 @@ export default {
       hover: false
     };
   },
-  mounted: function() {}
 };
 </script>
 
